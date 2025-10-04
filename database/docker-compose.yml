@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+
+  frontend:
+    build: ./frontend
+    ports:
+      - 5173:5173
+    depends_on:
+      - backend
+  backend:
+    build: ./backend
+    ports:
+      - 4000:4000
+    depends_on:
+      - db
+    env_file:
+      - ./backend/src/.env
+
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: ecommerce
+      POSTGRES_PASSWORD: ecommerce
+      POSTGRES_DB: ecommerce
+    ports:
+      - "5433:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+      - ./backend/src/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+      - ./backend/src/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql
+volumes:
+  dbdata:
