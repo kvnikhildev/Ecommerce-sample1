@@ -1,0 +1,79 @@
+pipeline {
+    agent any
+
+    environment{
+        SNYK_TOKEN = credentials('snyk-token')
+        BUILD_NO = "${env.BUILD_ID}"
+        
+        }
+
+    stages {
+        stage('git Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/kvnikhildev/Ecommerce-sample1.git'
+            }
+        }
+       
+        stage('git lint') {
+            steps {
+                dir('backend'){
+                sh ''' 
+                npm install
+                npm run lint
+                '''
+                }
+            }
+        }
+        stage('snyk test') {
+            steps {
+                dir('backend'){ 
+                sh ''' 
+                snyk auth $SNYK_TOKEN
+                snyk test
+                snyk monitor
+                '''
+                }
+            }
+        }
+        stage('sonarQube Analysis') {
+            steps {
+                dir('backend'){
+                    withSonarQubeEnv('My SonarQube Server')
+                    {
+                    sh 'sonar-scanner -Dsonar.projectKey=ecommerce-3tier -Dsonar.sources=. '                 
+                    }
+                }
+            }
+        }
+
+        stage('build ')
+        {
+            steps {
+
+                dir('backend'){
+                    sh '''
+                    docker build -t ecommerce-backend:v$BUILD_NO .
+                    '''
+                }
+            }
+        }
+        stage('image push')
+        {
+            steps {
+
+                dir('backend'){
+                    withCredentials([usernamePassword(credentialsId: 'DOCKER_REG', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')])
+                    {
+                        sh'''
+                        echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+                        docker push $DOCKER_USER/ecommerce-backend:v$BUILD_NO
+                          '''
+                        
+                    }
+                }
+              
+            }
+
+        }
+    }
+}
