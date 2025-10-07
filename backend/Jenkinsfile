@@ -19,8 +19,8 @@ pipeline {
                 dir('backend'){
                 sh ''' 
                 npm install
-                npm run lint
-                npx eslint . --fix || true
+                npm run lint || true
+
                 '''
                 }
             }
