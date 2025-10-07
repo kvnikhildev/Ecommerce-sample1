@@ -4,7 +4,7 @@ pipeline {
     environment{
         SNYK_TOKEN = credentials('snyk-token')
         BUILD_NO = "${env.BUILD_ID}"
-        DOCKER_USER = "kvnikhildev"
+        DOCKER_USER = "kvnikhill"
         
         }
 
