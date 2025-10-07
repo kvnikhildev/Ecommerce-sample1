@@ -1,6 +1,6 @@
-import fs from 'fs';
-import pkg from 'pg';
-import dotenv from 'dotenv';
+import fs from "fs";
+import pkg from "pg";
+import dotenv from "dotenv";
 dotenv.config();
 const { Pool } = pkg;
 
@@ -21,16 +21,16 @@ async function runSqlFile(path) {
   await query(sql.toString());
 }
 
-if (process.argv[2] === 'init') {
-  runSqlFile('./schema.sql').then(() => {
-    console.log('DB initialized');
+if (process.argv[2] === "init") {
+  runSqlFile("./schema.sql").then(() => {
+    console.log("DB initialized");
     process.exit(0);
   }).catch(err => { console.error(err); process.exit(1); });
 }
 
-if (process.argv[2] === 'seed') {
-  runSqlFile('./seed.sql').then(() => {
-    console.log('DB seeded');
+if (process.argv[2] === "seed") {
+  runSqlFile("./seed.sql").then(() => {
+    console.log("DB seeded");
     process.exit(0);
   }).catch(err => { console.error(err); process.exit(1); });
 }
@@ -39,7 +39,7 @@ async function connectWithRetry(retries = 5, delay = 2000) {
     try {
       const client = await pool.connect();
       client.release();
-      console.log('✅ Connected to PostgreSQL');
+      console.log("✅ Connected to PostgreSQL");
       return;
     } catch (err) {
       console.error(`❌ DB connection failed. Retrying in ${delay / 1000}s...`);
@@ -47,7 +47,7 @@ async function connectWithRetry(retries = 5, delay = 2000) {
       await new Promise(res => setTimeout(res, delay));
     }
   }
-  console.error('❌ Could not connect to PostgreSQL after multiple attempts');
+  console.error("❌ Could not connect to PostgreSQL after multiple attempts");
   process.exit(1);
 }
 
