@@ -20,6 +20,7 @@ pipeline {
                 sh ''' 
                 npm install
                 npm run lint
+                npx eslint . --fix || true
                 '''
                 }
             }
@@ -38,7 +39,7 @@ pipeline {
         stage('sonarQube Analysis') {
             steps {
                 dir('backend'){
-                    withSonarQubeEnv('My SonarQube Server')
+                    withSonarQubeEnv('SonarQube_Server')
                     {
                     sh 'sonar-scanner -Dsonar.projectKey=ecommerce-3tier -Dsonar.sources=. '                 
                     }
