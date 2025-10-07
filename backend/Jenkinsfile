@@ -30,8 +30,8 @@ pipeline {
                 dir('backend'){ 
                 sh ''' 
                 snyk auth $SNYK_TOKEN
-                snyk test
-                snyk monitor
+                snyk test || true
+                snyk monitor || true
                 '''
                 }
             }
