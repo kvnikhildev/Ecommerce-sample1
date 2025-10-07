@@ -41,7 +41,7 @@ pipeline {
                 dir('backend'){
                     withSonarQubeEnv('SonarQube_Server')
                     {
-                    sh 'sonar-scanner -Dsonar.projectKey=ecommerce-3tier -Dsonar.sources=. '                 
+                    sh 'npx sonar-scanner -Dsonar.projectKey=ecommerce-3tier -Dsonar.sources=. '                 
                     }
                 }
             }
