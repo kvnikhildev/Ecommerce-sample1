@@ -53,7 +53,7 @@ pipeline {
 
                 dir('backend'){
                     sh '''
-                    docker build -t ecommerce-backend:v$BUILD_NO .
+                    docker build -t $DOCKER_USER/ecommerce-backend:$BUILD_NO .
                     '''
                 }
             }
