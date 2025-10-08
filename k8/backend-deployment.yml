@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend
+
+spec:
+  replicas: 2 
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      name: backend-deployment
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend-deployment
+        image: kvnikhill/ecommerce-backend:v
+
