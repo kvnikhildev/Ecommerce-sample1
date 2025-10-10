@@ -1,0 +1,7 @@
+replicaCount: 2
+
+image:
+  repository: kvnikhill/ecommerce-backend
+  tag: v15 # default tag
+service:
+  port: 4000
