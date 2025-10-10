@@ -12,7 +12,6 @@ spec:
       app: {{ .Release.Name }}
   template:
     metadata:
-      name: {{ .Release.Name }}-backend
       labels:
         app: {{ .Release.Name }}
     spec:
