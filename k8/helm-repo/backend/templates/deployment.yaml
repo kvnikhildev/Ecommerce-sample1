@@ -3,18 +3,18 @@ kind: Deployment
 metadata:
   name: {{ .Release.Name }}-backend
   labels:
-    app: {{ .Release.Name}}
+    app: {{ .Release.Name }}
 
 spec:
   replicas: {{ .Values.replicaCount }} 
   selector:
     matchLabels:
-      app: {{ .Release.Name}}
+      app: {{ .Release.Name }}
   template:
     metadata:
       name: {{ .Release.Name }}-backend
       labels:
-        app: {{ .Release.Name}}
+        app: {{ .Release.Name }}
     spec:
       containers:
       - name: {{ .Release.Name }}-backend
