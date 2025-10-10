@@ -7,7 +7,7 @@ metadata:
 spec:
   selector:
     labels:
-      {{ .Release.Name }}
+      app: {{ .Release.Name }}
   type: NodePort
   ports:
     - port: 4000
