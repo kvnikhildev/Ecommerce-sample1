@@ -3,12 +3,12 @@ kind: Service
 metadata:
   name: backend
   labels:
-      {{ .Values.labels.app }}
+    app:  {{ .Values.labels.app }}
 spec:
   selector:
     labels:
       app: {{ .Values.labels.app }}
-      
+
   type: NodePort
   ports:
     - port: 4000
