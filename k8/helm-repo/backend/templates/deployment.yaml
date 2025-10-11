@@ -1,21 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}
+  name: backend
   labels:
-    app: {{ .Release.Name }}
+    app: {{ .Values.labels.app }}
 
 spec:
   replicas: {{ .Values.replicaCount }} 
   selector:
     matchLabels:
-      app: {{ .Release.Name }}
+      app: {{ .Values.labels.app }}
   template:
-    metadata:
+    metadata: 
+      name: backend
       labels:
-        app: {{ .Release.Name }}
+        app: {{ .Values.labels.app }}
     spec:
       containers:
-      - name: {{ .Release.Name }}
+      - name: backend
         image:  "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
 

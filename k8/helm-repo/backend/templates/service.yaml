@@ -1,13 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-backend
+  name: backend
   labels:
-      {{ .Release.Name }}
+      {{ .Values.labels.app }}
 spec:
   selector:
     labels:
-      app: {{ .Release.Name }}
+      app: {{ .Values.labels.app }}
+      
   type: NodePort
   ports:
     - port: 4000
