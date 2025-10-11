@@ -5,11 +5,12 @@ metadata:
   labels:
     app:  {{ .Values.labels.app }}
 spec:
+  type: NodePort
   selector:
     labels:
       app: {{ .Values.labels.app }}
 
-  type: NodePort
+  
   ports:
     - port: 4000
       targetPort: 4000
