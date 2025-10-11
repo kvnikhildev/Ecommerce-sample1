@@ -1,5 +1,8 @@
 replicaCount: 2
 
+labels:
+  app: backendapp
+
 image:
   repository: kvnikhill/ecommerce-backend
   tag: v15 # default tag
