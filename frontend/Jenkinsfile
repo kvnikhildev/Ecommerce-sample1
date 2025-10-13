@@ -12,10 +12,12 @@ pipeline {
 
         stage('git install pacage and lint check ') {
             steps {
+                dir('frontend'){
                 sh '''
                 npm install
                 npm run lint 
                 '''
+                }
              
             }
         }
