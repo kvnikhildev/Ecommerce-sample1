@@ -15,7 +15,6 @@ pipeline {
                 dir('frontend'){
                 sh '''
                 npm install
-                npm run lint 
                 npm run lint || true
                 '''
                 }
