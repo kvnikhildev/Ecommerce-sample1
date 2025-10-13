@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('git checkout') {
+            steps {
+             checkout scmGit(branches: [[name: '*/main']],
+             extensions: [sparseCheckout([[path: 'frontend']])],   // extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path:'frontend']]]],
+             userRemoteConfigs: [[url: 'https://github.com/kvnikhildev/Ecommerce-sample1.git']])  
+            }
+        }
+
+        stage('git install pacage and lint check ') {
+            steps {
+                sh '''
+                npm install
+                npm run lint 
+                '''
+             
+            }
+        }
+    }
+
+
+
+
+    }
+
+}
