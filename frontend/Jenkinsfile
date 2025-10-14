@@ -43,7 +43,7 @@ pipeline {
         stage('sonarqube analysis') {
             steps {
                 dir('frontend'){
-                withSonarQubeEnv(credentialsId: 'sonar-jenkin') {
+                withSonarQubeEnv('SonarQube_Server') {
                     sh '''
                             npx sonar-scanner \
                             - Dsonar.projectKey=ecommerce-frontend \
