@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    tools{
+       sonarQube 'sonar-server' 
+    }
+
+
     stages {
         stage('git checkout') {
             steps {
@@ -21,10 +26,35 @@ pipeline {
              
             }
         }
+
+         stage('snyk test ') {
+            steps {
+                dir('frontend'){
+                sh '''
+                snyk $SNYK_TOKEN
+                snyk test || true
+                snyk monitor || true 
+                '''
+                }
+             
+            }
+        }
+
+        stage('sonarqube analysis') {
+            steps {
+                dir('frontend'){
+                withSonarQubeEnv(credentialsId: 'sonar-jenkin') {
+                    sh '''
+                            npx sonar-scanner \
+                            - Dsonar.projectKey=ecommerce-frontend \
+                            - Dsonar.sources=. \
+                        '''           
+                    }
+                }
+            }
+
+        }
     }
-
-
-
-
 }
+
 
