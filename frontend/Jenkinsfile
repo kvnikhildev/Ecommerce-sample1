@@ -47,8 +47,8 @@ pipeline {
                 withSonarQubeEnv('SonarQube_Server') {
                     sh '''
                             npx sonar-scanner \
-                            - Dsonar.projectKey=ecommerce-frontend \
-                            - Dsonar.sources=. \
+                            -Dsonar.projectKey=ecommerce-frontend \
+                            -Dsonar.sources=. \
                         '''           
                     }
                 }
