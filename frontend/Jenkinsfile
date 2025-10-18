@@ -55,6 +55,32 @@ pipeline {
             }
 
         }
+
+        stage(' build the app') {
+            steps {
+                dir('frontend'){
+                sh npm run build
+
+                }
+             
+            }
+        }
+
+        stage(' create artifacts ') {
+            steps {
+                dir('frontend'){
+                sh 'tar -czf ecommerce-frontend-artifact.tar.gz artifact/'
+                
+                }
+             
+            }
+        }
+
+
+
+
+
+
     }
 }
 
