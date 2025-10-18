@@ -5,6 +5,11 @@ pipeline {
         jdk 'jdk'
        
     }
+    environment{
+
+                    DOCKER_REPO = "kvnikhill"
+                    BUILD_NO = "${env.BUILD_ID}"
+                }
 
 
     stages {
@@ -77,11 +82,7 @@ pipeline {
         }
 
         stage(' create docker file ') {
-              environment{
-
-                    DOCKER_REPO = "kvnikhill"
-                    BUILD_NO = "${env.BUILD_ID}"
-                }
+              
             steps {
                 dir('frontend'){
                 sh '''
