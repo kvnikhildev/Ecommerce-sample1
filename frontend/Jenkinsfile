@@ -93,7 +93,19 @@ pipeline {
              
             }
         }
+        stage(' push image to docker hub ') {
+            steps {
+                dir('frontend'){
+                withDockerRegistry(credentialsId: 'DOCKER_REG', url: 'https://index.docker.io/v1/') {
+                    sh '''
+                        docker push $DOCKER_REPO/ecommerce-frontend:$BUILD_NO
+                    '''
+                    }
 
+                }
+             
+            }
+        }
 
 
 
