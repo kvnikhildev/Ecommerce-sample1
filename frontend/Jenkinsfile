@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     tools {
+        jdk 'jdk'
        sonarQube 'sonar-server' 
     }
 
@@ -15,7 +16,7 @@ pipeline {
             }
         }
 
-        stage('git install pacage and lint check ') {
+        stage('git install package and lint check ') {
             steps {
                 dir('frontend'){
                 sh '''
