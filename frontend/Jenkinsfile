@@ -59,7 +59,7 @@ pipeline {
         stage(' build the app') {
             steps {
                 dir('frontend'){
-                sh npm run build
+                sh 'npm run build'
 
                 }
              
