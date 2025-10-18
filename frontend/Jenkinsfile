@@ -77,13 +77,12 @@ pipeline {
         }
 
         stage(' create docker file ') {
-            steps {
-
-                environment{
+              environment{
 
                     DOCKER_REPO = "kvnikhill"
                     BUILD_NO = "${env.BUILD_ID}"
                 }
+            steps {
                 dir('frontend'){
                 sh '''
                 docker build -t $DOCKER_REPO/ecommerce-frontend:$BUILD_NO .
