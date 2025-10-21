@@ -137,6 +137,7 @@ pipeline {
                     cd helm-repo/frontend 
                     git config user.email "nikhilkaviledev@gmail.com"
                     git config user.name "kvnikhildev"
+                    git remote set-url origin https://$GIT_SECRET@github.com/kvnikhildev/Ecommerce-sample1.git
                     git add values.yaml
                     git commit -m "helm chart"
                     git push origin main             
@@ -146,6 +147,8 @@ pipeline {
              
             }
         }
+
+
 
     }
 }
