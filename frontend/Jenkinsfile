@@ -107,9 +107,28 @@ pipeline {
              
             }
         }
+        stage(' clone helm repo ') {
+              
+            steps {
 
-
-
+               checkout scmGit(branches: [[name: '*/main']], extensions: [sparseCheckout([[path: 'k8']])], 
+               userRemoteConfigs: [[credentialsId: 'jenkin-github', 
+               url: 'https://github.com/kvnikhildev/Ecommerce-sample1.git']])
+                
+                }
+             
+            }
+        stage('update helm repo') {
+            steps {
+                dir('k8'){
+                sh '''
+                cd helm-repo/frontend
+                sed -i "s/tag:.*/tag: ${BUILD_NO}/" values.yaml            
+                '''
+                }
+             
+            }
+        }
 
 
     }
