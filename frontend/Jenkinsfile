@@ -129,7 +129,22 @@ pipeline {
              
             }
         }
-
+        stage('push helm changes') {
+            steps {
+                withCredentials([string(credentialsId: 'GITHUB', variable: 'GIT_SECRET')]) {
+                dir('k8'){
+                sh '''
+                    cd helm-repo/frontend 
+                    git config user.email "nikhilkaviledev@gmail.com"
+                    git configure user.name "kvnikhildev"
+                    git commit -m "helm chart"
+                    git push origin main             
+                '''
+                    }
+                }
+             
+            }
+        }
 
     }
 }
