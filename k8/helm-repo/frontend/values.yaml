@@ -1,0 +1,11 @@
+replicaCount: 2
+labels:
+  app: frontendapp
+
+image:
+  repository: kvnikhill/ecommerce-frontend
+  tag: "21"
+
+service:
+  port
+
