@@ -137,6 +137,7 @@ pipeline {
                     cd helm-repo/frontend 
                     git config user.email "nikhilkaviledev@gmail.com"
                     git config user.name "kvnikhildev"
+                    git add values.yaml
                     git commit -m "helm chart"
                     git push origin main             
                 '''
