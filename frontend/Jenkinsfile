@@ -134,7 +134,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'GITHUB', variable: 'GIT_SECRET')]) {
                 dir('k8'){
                 sh '''
-                    cd /helm-repo/frontend
+                    cd helm-repo/frontend
                     git config user.email "nikhilkaviledev@gmail.com"
                     git config user.name "kvnikhildev"
                     git remote set-url origin https://$GIT_SECRET@github.com/kvnikhildev/Ecommerce-sample1.git
