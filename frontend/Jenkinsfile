@@ -132,7 +132,7 @@ pipeline {
         stage('push helm changes') {
             steps {
                 withCredentials([string(credentialsId: 'GITHUB', variable: 'GIT_SECRET')]) {
-                dir('helm-repo/frontend'){
+                dir('k8/helm-repo/frontend'){
                 sh '''
                     git config user.email "nikhilkaviledev@gmail.com"
                     git config user.name "kvnikhildev"
