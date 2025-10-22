@@ -17,5 +17,5 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: "{{ .Values.image.repository }}:{{ .Values.containers.tag }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           
