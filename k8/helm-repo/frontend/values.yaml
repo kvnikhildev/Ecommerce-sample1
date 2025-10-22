@@ -4,7 +4,7 @@ labels:
 
 image:
   repository: kvnikhill/ecommerce-frontend
-  tag: "21"
+  tag: 32
 
 service:
   port: 5173
