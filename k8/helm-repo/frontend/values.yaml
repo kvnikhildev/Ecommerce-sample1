@@ -7,5 +7,5 @@ image:
   tag: 32
 
 service:
-  port: 5173
+  port: 80
 

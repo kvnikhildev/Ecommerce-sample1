@@ -11,7 +11,6 @@ COPY ecommerce-frontend-artifact.tar.gz .
 # extract and after extract remove
 RUN tar -xzf ecommerce-frontend-artifact.tar.gz && rm ecommerce-frontend-artifact.tar.gz  
 
-EXPOSE 5173
+EXPOSE 80
 
-CMD [ "npm", "run", "dev" ]
-
+CMD ["nginx", "-g", "daemon off;"]
