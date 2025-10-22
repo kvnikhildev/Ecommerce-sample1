@@ -8,7 +8,7 @@ spec:
   type: NodePort
   selector:
     labels:
-      app: {{ .values.lables.app }}
+      app: {{ .Values.lables.app }}
   ports:
     - port: {{ .Values.port}}
       targetPort: {{ .Values.port}}
