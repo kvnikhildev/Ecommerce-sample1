@@ -4,7 +4,7 @@ labels:
 
 image:
   repository: kvnikhill/ecommerce-frontend
-  tag: 38
+  tag: 39
 
 service:
   port: 80
