@@ -7,10 +7,9 @@ metadata:
 spec:
   type: NodePort
   selector:
-    labels:
       app: {{ .Values.labels.app }}
   ports:
-    - port: {{ .Values.port}}
-      targetPort: {{ .Values.port}}
+    - port: {{ .Values.port }}
+      targetPort: {{ .Values.port }}
       nodeport: 32146
  
