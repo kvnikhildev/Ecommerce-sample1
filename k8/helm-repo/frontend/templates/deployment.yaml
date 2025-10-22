@@ -3,19 +3,19 @@ kind: Deployment
 metadata:
   name: frontend
   labels:
-    app: {{ .Values.labels }}
+    app: {{ .Values.labels.app }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ .Values.labels }}
+      app: {{ .Values.labels.app }}
   template:
     metadata:
       name: frontend
       labels:
-        app: {{ .Values.lables }}
+        app: {{ .Values.labels.app }}
     spec:
       containers:
-        - name: 
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        - name: frontend
+          image: "{{ .Values.image.repository }}:{{ .Values.containers.tag }}"
           
