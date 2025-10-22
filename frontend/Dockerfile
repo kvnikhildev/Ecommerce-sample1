@@ -1,19 +1,16 @@
-FROM nginx:alpine 
-
-WORKDIR /app
-
+# Use lightweight Nginx image
+FROM nginx:alpine
 
 # Remove default Nginx HTML files
-RUN rm -rf ./*
+RUN rm -rf /usr/share/nginx/html/*
 
-COPY ecommerce-frontend-artifact.tar.gz .
+# Copy and extract your frontend artifact into the Nginx web root
+COPY ecommerce-frontend-artifact.tar.gz /usr/share/nginx/html/
+RUN tar -xzf /usr/share/nginx/html/ecommerce-frontend-artifact.tar.gz -C /usr/share/nginx/html/ \
+    && rm /usr/share/nginx/html/ecommerce-frontend-artifact.tar.gz
 
-# extract and after extract remove
-RUN tar -xzf ecommerce-frontend-artifact.tar.gz && rm ecommerce-frontend-artifact.tar.gz  
-
-# Replace default Nginx config with one pointing to /app
-COPY nginx.conf /etc/nginx/nginx.conf
-
+# Expose port 80
 EXPOSE 80
 
+# Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
