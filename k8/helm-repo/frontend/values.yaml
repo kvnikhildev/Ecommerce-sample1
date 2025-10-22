@@ -1,6 +1,6 @@
 replicaCount: 2
 labels:
-  app: frontendapp
+  app: frontend
 
 image:
   repository: kvnikhill/ecommerce-frontend
