@@ -19,3 +19,9 @@ spec:
         - name: frontend
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           
+          volumeMounts:
+            - name: frontend-html
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: frontend-html
+          emptyDir: {}  
