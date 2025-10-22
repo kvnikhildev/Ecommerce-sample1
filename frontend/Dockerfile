@@ -1,4 +1,4 @@
-FROM ngix:alpine 
+FROM ngnix:alpine 
 
 WORKDIR /app
 
